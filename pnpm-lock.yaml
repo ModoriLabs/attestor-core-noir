@@ -90,8 +90,8 @@ importers:
         specifier: ^8.18.0
         version: 8.18.2
       zk-symmetric-crypto-test:
-        specifier: 1.1.0
-        version: 1.1.0(koffi@2.12.0)(snarkjs@0.7.5)
+        specifier: 1.4.0
+        version: 1.4.0(koffi@2.12.0)(snarkjs@0.7.5)
     optionalDependencies:
       koffi:
         specifier: ^2.9.2
@@ -4752,8 +4752,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zk-symmetric-crypto-test@1.1.0:
-    resolution: {integrity: sha512-hZdu9uGODqPQHFYArjLWKoHWo5BR0Z8rxEn/VWjXIGuLhmaQvcX5eN1Crh8v1Bj438AJ3Z+5dRLaBPdiBaSh1g==}
+  zk-symmetric-crypto-test@1.4.0:
+    resolution: {integrity: sha512-5lW5GULfMG7NockWFKRwDNMZMhCAwfNaTrIG0++wi0psqTTAGspHiXj/5SDcViedGMvLiLFwK3BXrXaEIkLYWw==}
     peerDependencies:
       koffi: '*'
       snarkjs: '*'
@@ -10415,7 +10415,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zk-symmetric-crypto-test@1.1.0(koffi@2.12.0)(snarkjs@0.7.5):
+  zk-symmetric-crypto-test@1.4.0(koffi@2.12.0)(snarkjs@0.7.5):
     dependencies:
       '@aztec/bb.js': 0.84.0
       '@noir-lang/noir_js': 1.0.0-beta.9
