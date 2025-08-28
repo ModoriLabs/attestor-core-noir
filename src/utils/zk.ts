@@ -576,11 +576,29 @@ export function makeDefaultZkOperator(
       throw new Error(`No ZK operator maker for ${zkEngine}`);
     }
     if (zkEngine === "barretenberg") {
+      // zkOperators[algorithm] = maker({
+      //   algorithm,
+      //   fetcher,
+      //   options: { threads: 8, maxProofConcurrency: 2 },
+      // });
+      // zkOperators[algorithm] = maker({ algorithm, fetcher })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {   maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 32, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 2, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 3, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 4, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 5, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 6, maxProofConcurrency: 6 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 2, maxProofConcurrency: 3 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 3, maxProofConcurrency: 3 } })
       zkOperators[algorithm] = maker({
         algorithm,
         fetcher,
-        options: { threads: 8, maxProofConcurrency: 2 },
+        options: { threads: 4, maxProofConcurrency: 3 },
       });
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 5, maxProofConcurrency: 3 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 6, maxProofConcurrency: 3 } })
+      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 7, maxProofConcurrency: 3 } })
     } else {
       zkOperators[algorithm] = maker({ algorithm, fetcher });
     }
