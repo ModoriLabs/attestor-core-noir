@@ -23,6 +23,7 @@ import {
   verifyProof,
   ZKEngine,
   ZKOperator,
+  BarretenbergOperator,
   // } from '@reclaimprotocol/zk-symmetric-crypto'
 } from "zk-symmetric-crypto-test";
 import {
@@ -525,7 +526,9 @@ function getChunkSizeBytes(alg: EncryptionAlgorithm) {
 }
 
 const zkEngines: {
-  [z in ZKEngine]?: { [E in EncryptionAlgorithm]?: ZKOperator };
+  [z in ZKEngine]?: {
+    [E in EncryptionAlgorithm]?: ZKOperator | BarretenbergOperator;
+  };
 } = {};
 
 const oprfEngines: {
@@ -533,7 +536,9 @@ const oprfEngines: {
 } = {};
 
 const operatorMakers: {
-  [z in ZKEngine]?: (opts: MakeZKOperatorOpts<{}>) => ZKOperator;
+  [z in ZKEngine]?: (
+    opts: MakeZKOperatorOpts<{}>
+  ) => ZKOperator | BarretenbergOperator;
 } = {
   snarkjs: makeSnarkJsZKOperator,
   gnark: makeGnarkZkOperator,
