@@ -24,7 +24,8 @@ import {
   ZKEngine,
   ZKOperator,
   BarretenbergOperator,
-  // } from '@reclaimprotocol/zk-symmetric-crypto'
+  isBarretenbergOperator,
+// } from '@reclaimprotocol/zk-symmetric-crypto'
 } from "zk-symmetric-crypto-test";
 import {
   DEFAULT_REMOTE_FILE_FETCH_BASE_URL,
@@ -61,6 +62,7 @@ import {
   isRedactionCongruent,
   REDACTION_CHAR_CODE,
 } from "src/utils/redactions";
+import { cpus } from "os";
 
 type GenerateZKChunkProofOpts = {
   key: Uint8Array;
@@ -470,6 +472,8 @@ export async function verifyZkPacket({
       nonce = generateIV(nonce, recordNumber);
     }
 
+    // Use the standard verifyProof for all engines
+    // The verifyProof function from zk-symmetric-crypto should handle barretenberg correctly
     await verifyProof({
       proof: {
         algorithm,
@@ -576,29 +580,11 @@ export function makeDefaultZkOperator(
       throw new Error(`No ZK operator maker for ${zkEngine}`);
     }
     if (zkEngine === "barretenberg") {
-      // zkOperators[algorithm] = maker({
-      //   algorithm,
-      //   fetcher,
-      //   options: { threads: 8, maxProofConcurrency: 2 },
-      // });
-      // zkOperators[algorithm] = maker({ algorithm, fetcher })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {   maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 32, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 2, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 3, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 4, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 5, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 6, maxProofConcurrency: 6 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 2, maxProofConcurrency: 3 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 3, maxProofConcurrency: 3 } })
       zkOperators[algorithm] = maker({
         algorithm,
         fetcher,
-        options: { threads: 4, maxProofConcurrency: 3 },
+        options: { threads: cpus().length },
       });
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 5, maxProofConcurrency: 3 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 6, maxProofConcurrency: 3 } })
-      // zkOperators[algorithm] = maker({ algorithm, fetcher, options: {  threads: 7, maxProofConcurrency: 3 } })
     } else {
       zkOperators[algorithm] = maker({ algorithm, fetcher });
     }
