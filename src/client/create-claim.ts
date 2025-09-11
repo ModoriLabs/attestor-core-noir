@@ -274,6 +274,8 @@ async function _createClaimOnAttestor<N extends ProviderName>(
 		transcript: await generateTranscript(),
 		zkEngine: zkEngine === 'gnark'
 			? ZKProofEngine.ZK_ENGINE_GNARK
+			: zkEngine === 'barretenberg'
+			? ZKProofEngine.ZK_ENGINE_BARRETENBERG
 			: ZKProofEngine.ZK_ENGINE_SNARKJS,
 		fixedServerIV: serverIV!,
 		fixedClientIV: clientIV!,
