@@ -101,7 +101,7 @@ async function _createClaimOnAttestor<N extends ProviderName>(
 	}
 	const { zkEngine = 'snarkjs' } = zkOpts
 
-	let redactionMode = getProviderValue(params, provider.writeRedactionMode)
+	let redactionMode = getProviderValue(params, provider.writeRedactionMode) || 'zk'
 
 	const [host, port] = hostPort.split(':')
 	const resParser = makeHttpResponseParser()
